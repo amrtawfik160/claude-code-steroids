@@ -119,9 +119,10 @@ Reference the full checklist in `/context/nextjs-clean-code.md` when:
 ```
 
 ### Integration
-- Add directly to project's `CLAUDE.md` file
-- Multiple snippets can coexist in same file
+- Store as separate `.md` files in `/snippets/` directory
+- CLAUDE.md automatically loads all snippets from `/snippets/` folder
 - Reference context files for detailed guidance
+- Use descriptive filenames: `technology-snippet.md`, `domain-snippet.md`
 
 ---
 
@@ -206,8 +207,8 @@ Conduct comprehensive Next.js clean code review based on `/context/nextjs-clean-
 ```
 
 ### File Location
-- Store as `.md` files in project root or `.claude/commands/` if using Claude Code
-- Use descriptive names: `nextjs-review.md`, `design-review.md`
+- Store as `.md` files in `/commands/` directory
+- Use descriptive names: `nextjs-review.md`, `design-review.md`, `copywriting-review.md`
 
 ### Usage
 - Invoke with `/command-name` in Claude Code
@@ -279,18 +280,23 @@ Task({
 ### Recommended Directory Structure
 ```
 project/
-├── CLAUDE.md                    # Main Claude Code context with snippets
+├── CLAUDE.md                    # Main Claude Code context (loads snippets automatically)
 ├── context/                     # Detailed reference materials
 │   ├── nextjs-clean-code.md    # Technology-specific guidelines
 │   ├── design-principles.md    # Design standards
+│   ├── copywriting-best-practices.md # Copywriting guidelines
 │   └── security-standards.md   # Security requirements
-├── .claude/                     # Claude Code specific files
-│   └── commands/               # Slash commands (if using Claude Code)
-│       ├── nextjs-review.md    # Technology reviews
-│       └── design-review.md    # Design analysis
-└── agents/                      # Component definitions
-    ├── nextjs-snippet.md       # Snippet examples
-    └── review-commands.md       # Command templates
+├── snippets/                    # CLAUDE.md snippets (auto-loaded)
+│   ├── nextjs-clean-code-snippet.md
+│   ├── design-review-snippet.md
+│   └── copywriting-snippet.md
+├── commands/                    # Slash commands
+│   ├── nextjs-review.md        # Technology reviews
+│   ├── design-review.md        # Design analysis
+│   └── copywriting-review.md   # Content analysis
+└── agents/                      # Agent definitions and examples
+    ├── design-review.md        # Design review agent
+    └── copywriting-agent.md    # Copywriting analysis agent
 ```
 
 ### Naming Conventions
@@ -300,10 +306,10 @@ project/
 - **Agent definitions**: Descriptive names matching their purpose
 
 ### Content Organization
-1. **Context Files**: Comprehensive, checkbox-based guidelines
-2. **Snippets**: Immediate actions and quick references
-3. **Commands**: Git-aware analysis and review workflows
-4. **Agent Prompts**: Detailed, autonomous task specifications
+1. **Context Files** (`/context/`): Comprehensive, checkbox-based guidelines
+2. **Snippets** (`/snippets/`): Immediate actions and quick references (auto-loaded by CLAUDE.md)
+3. **Commands** (`/commands/`): Git-aware analysis and review workflows
+4. **Agent Definitions** (`/agents/`): Detailed, autonomous task specifications and examples
 
 ---
 
@@ -407,3 +413,7 @@ Task({
 - Archive outdated components and update references
 
 This guide provides the foundation for creating effective Claude Code components that enhance development workflows and maintain code quality standards.
+
+---
+
+*Note: Snippets from `/snippets/` directory are automatically loaded into Claude's context when using CLAUDE.md.*
